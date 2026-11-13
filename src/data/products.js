@@ -1,0 +1,86 @@
+export const products = [
+  { 
+    id: 1, 
+    name: 'Ribbed Round Pot', 
+    price: 799, 
+    oldPrice: 1099, 
+    category: 'Indoor', 
+    img: 'https://images.unsplash.com/photo-1485955900006-10f4d324d411?auto=format&fit=crop&q=80&w=600&h=600', 
+    tag: 'Bestseller', 
+    rating: 4.8, 
+    reviews: 125, 
+    desc: 'A minimal and elegant planter for modern spaces. Perfect for indoor and outdoor use.' 
+  },
+  { 
+    id: 2, 
+    name: 'Matte Beige Planter', 
+    price: 1299, 
+    oldPrice: null, 
+    category: 'Indoor', 
+    img: 'https://images.unsplash.com/photo-1592150621744-aca64f48394a?auto=format&fit=crop&q=80&w=600&h=600', 
+    tag: 'New', 
+    rating: 4.9, 
+    reviews: 89, 
+    desc: 'High-quality durable material with a smooth matte finish.' 
+  },
+  { 
+    id: 3, 
+    name: 'Tall Floor Pot', 
+    price: 1899, 
+    oldPrice: null, 
+    category: 'Outdoor', 
+    img: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&q=80&w=600&h=600', 
+    tag: null, 
+    rating: 4.7, 
+    reviews: 210, 
+    desc: 'Perfect tall floor pot for your balcony or living room corner.' 
+  },
+  { 
+    id: 4, 
+    name: 'Rectangular Planter', 
+    price: 1499, 
+    oldPrice: null, 
+    category: 'Planters', 
+    img: 'https://images.unsplash.com/photo-1512428813834-c702c7702b78?auto=format&fit=crop&q=80&w=600&h=600', 
+    tag: null, 
+    rating: 4.6, 
+    reviews: 45, 
+    desc: 'Spacious rectangular planter for multiple plants.' 
+  },
+  { 
+    id: 5, 
+    name: 'Stone Finish Pot', 
+    price: 999, 
+    oldPrice: 1299, 
+    category: 'Outdoor', 
+    img: 'https://images.unsplash.com/photo-1585314062340-f1a5a7c9328d?auto=format&fit=crop&q=80&w=600&h=600', 
+    tag: '10% Off', 
+    rating: 4.5, 
+    reviews: 67, 
+    desc: 'Rustic stone finish pot that adds texture to your garden.' 
+  },
+  { 
+    id: 6, 
+    name: 'Ceramic Planter Set', 
+    price: 599, 
+    oldPrice: 799, 
+    category: 'Indoor', 
+    img: 'https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&q=80&w=600&h=600', 
+    tag: null, 
+    rating: 4.4, 
+    reviews: 32, 
+    desc: 'Set of 2 premium ceramic planters for small plants.' 
+  },
+  { 
+    id: 7, 
+    name: 'Macrame Hanging Pot', 
+    price: 549, 
+    oldPrice: 749, 
+    category: 'Hanging', 
+    img: 'https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&q=80&w=600&h=600', 
+    tag: 'Bestseller', 
+    rating: 4.8, 
+    reviews: 156, 
+    desc: 'Handwoven macrame hanging pot for a bohemian vibe.' 
+  },
+];

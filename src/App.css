@@ -1,0 +1,12 @@
+
+/* Fast, continuous announcement ticker */
+.announcement-marquee { position: relative; width: 100%; }
+.announcement-track { width: max-content; animation: cityscape-announcement-scroll 16s linear infinite; will-change: transform; }
+.announcement-marquee:hover .announcement-track { animation-play-state: paused; }
+@keyframes cityscape-announcement-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-25%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .announcement-track { animation-duration: 60s; }
+}
