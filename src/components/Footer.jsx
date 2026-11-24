@@ -163,7 +163,7 @@
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useInView } from 'framer-motion';
-import { Leaf, Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
+import { Mail, Phone, MapPin, ArrowUpRight } from 'lucide-react';
 import { FaFacebookF, FaInstagram, FaTwitter, FaYoutube, FaWhatsapp, FaPinterestP } from 'react-icons/fa';
 import { useSiteSettings } from '../hooks/useSiteSettings';
 import { api, mediaUrl } from '../utils/api';
@@ -199,10 +199,30 @@ const Footer = () => {
   };
 
   const fallbackQuickLinks = [{ name: 'Home', path: '/' }, { name: 'About Us', path: '/about' }, { name: 'Contact Us', path: '/contact' }, { name: 'Bulk Order', path: '/bulk' }, { name: 'My Orders', path: '/orders' }];
-  const fallbackHelpLinks = [{ name: 'Privacy Policy', path: '/privacy' }, { name: 'Terms & Conditions', path: '/terms' }, { name: 'Favorites', path: '/favorites' }, { name: 'Cart', path: '/cart' }];
+  const fallbackHelpLinks = [
+  { name: 'Privacy Policy', path: '/privacy' },
+  { name: 'Terms & Conditions', path: '/terms' },
+  { name: 'Return & Refund Policy', path: '/return-refund' },
+  { name: 'Delivery & Shipping Policy', path: '/delivery-shipping' },
+  { name: 'Favorites', path: '/favorites' },
+  { name: 'Cart', path: '/cart' },
+];
   const parseLinks = (raw, fallback) => { try { const value = JSON.parse(raw || '[]'); return Array.isArray(value) && value.length ? value.filter(x => x.name && x.path) : fallback; } catch { return fallback; } };
   const quickLinks = parseLinks(settings.footer_quick_links_json, fallbackQuickLinks);
-  const helpLinks = parseLinks(settings.footer_help_links_json, fallbackHelpLinks);
+  // const helpLinks = parseLinks(settings.footer_help_links_json, fallbackHelpLinks);
+  const configuredHelpLinks = parseLinks(
+  settings.footer_help_links_json,
+  fallbackHelpLinks
+);
+
+const helpLinks = [
+  ...configuredHelpLinks,
+  ...fallbackHelpLinks.filter(
+    (required) =>
+      ['/return-refund', '/delivery-shipping'].includes(required.path) &&
+      !configuredHelpLinks.some((item) => item.path === required.path)
+  ),
+];
 
   const socialLinks = [
     { icon: <FaFacebookF />, href: settings.facebook_url || '#', name: 'Facebook' },
@@ -290,17 +310,27 @@ const Footer = () => {
         >
           {/* Brand */}
           <motion.div variants={itemVariants} className="lg:col-span-4 space-y-4">
-            <Link to="/" className="flex items-center gap-2 group">
-              <Leaf className="text-[#a3d9b1] w-7 h-7 group-hover:rotate-12 transition-transform" />
-              <div>
-                <h1 className="text-base font-bold text-white leading-tight">
-                  {settings.brand_name || 'Cityscape Greenery'}
-                </h1>
-                <h1 className="text-[10px] font-semibold text-[#a3d9b1] leading-tight tracking-[0.15em] uppercase">
-                  Greenery
-                </h1>
-              </div>
-            </Link>
+          
+<Link to="/" className="flex items-center gap-3 shrink-0 group">
+  {settings.logo_url && (
+    <img
+      src={mediaUrl(settings.logo_url)}
+      alt={settings.brand_name || 'Website Logo'}
+      className="w-11 h-11 md:w-14 md:h-14 rounded-full object-cover border-2 border-white/20 shadow-sm"
+    />
+  )}
+
+  <div className="flex flex-col justify-center">
+    <h1 className="text-base md:text-lg font-bold text-white leading-tight group-hover:text-[#a3d9b1] transition-colors">
+      {settings.brand_name || 'Cityscape Greenery'}
+    </h1>
+
+    <p className="text-[10px] font-semibold text-[#a3d9b1] leading-tight tracking-[0.15em] uppercase mt-1">
+      Greenery
+    </p>
+  </div>
+</Link>
+
             <p className="text-gray-300 text-xs leading-relaxed max-w-xs">
               Bringing nature closer to you with premium plants, stylish pots, and eco-friendly gardening solutions.
             </p>

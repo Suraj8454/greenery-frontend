@@ -255,12 +255,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ShoppingCart, User, Search, ChevronDown, Menu, X, Leaf, Heart, LogOut, ArrowRight } from 'lucide-react';
+import { ShoppingCart, User, Search, ChevronDown, Menu, X, Heart, LogOut, ArrowRight } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 import { useCart } from '../context/CartContext';
 import { useFavorites } from '../context/FavoritesContext';
 import { useSiteSettings } from '../hooks/useSiteSettings';
 import { api } from '../utils/api';
+import { mediaUrl } from '../utils/api';
 
 const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -333,7 +334,7 @@ const Navbar = () => {
           return <div className="announcement-track flex w-max items-center" aria-hidden="true">
             {[...items, ...items, ...items, ...items].map((line, index) => (
               <span key={`${index}-${line}`} className="flex items-center gap-3 whitespace-nowrap px-7">
-                <Leaf className="h-3 w-3 shrink-0 text-[#a3d9b1]" />{line}
+               <span className="h-1 w-1 rounded-full bg-[#a3d9b1] shrink-0" />{line}
               </span>
             ))}
           </div>;
@@ -346,16 +347,28 @@ const Navbar = () => {
           <div className="flex justify-between items-center h-16 md:h-20">
             
             {/* Logo */}
-            <Link to="/" className="flex items-center gap-2 shrink-0 group">
-              <Leaf
-                className="text-[#2d6a4f] w-8 h-8 md:w-9 md:h-9 group-hover:rotate-12 transition-all duration-500"
-                strokeWidth={1.8}
-              />
-              <div>
-                <h1 className="text-lg md:text-xl font-bold text-[#1a3c2e] leading-tight">{settings.brand_name || 'Cityscape Greenery'}</h1>
-                <h1 className="text-[10px] md:text-[11px] font-semibold text-[#2d6a4f] tracking-[0.2em] uppercase">Conscious plant living</h1>
-              </div>
-            </Link>
+           {/* Website Logo */}
+
+<Link to="/" className="flex items-center gap-3 shrink-0 group">
+  {settings.logo_url && (
+    <img
+      src={mediaUrl(settings.logo_url)}
+      alt={settings.brand_name || 'Website Logo'}
+      className="w-12 h-12 md:w-14 md:h-14 rounded-full object-cover border-2 border-[#d8e8dc] shadow-sm"
+    />
+  )}
+
+  <div className="flex flex-col justify-center">
+    <h1 className="text-lg md:text-xl font-bold text-[#1a3c2e] leading-tight group-hover:text-[#2d6a4f] transition-colors">
+      {settings.brand_name || 'Cityscape Greenery'}
+    </h1>
+
+    <p className="text-[9px] md:text-[10px] font-semibold text-[#2d6a4f] tracking-[0.16em] uppercase mt-1">
+      Conscious Plant Living
+    </p>
+  </div>
+</Link>
+
 
             {/* Search Desktop */}
             <form onSubmit={submitSearch} className="hidden lg:flex flex-1 max-w-xl mx-10 relative group">
