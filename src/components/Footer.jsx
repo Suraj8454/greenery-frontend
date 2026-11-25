@@ -198,7 +198,7 @@ const Footer = () => {
     }
   };
 
-  const fallbackQuickLinks = [{ name: 'Home', path: '/' }, { name: 'About Us', path: '/about' }, { name: 'Contact Us', path: '/contact' }, { name: 'Bulk Order', path: '/bulk' }, { name: 'My Orders', path: '/orders' }];
+  const fallbackQuickLinks = [{ name: 'Home', path: '/' }, { name: 'About Us', path: '/about' }, { name: 'Contact Us', path: '/contact' },  { name: 'My Orders', path: '/orders' }];
   const fallbackHelpLinks = [
   { name: 'Privacy Policy', path: '/privacy' },
   { name: 'Terms & Conditions', path: '/terms' },
